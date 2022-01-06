@@ -3,16 +3,30 @@ package com.joabepereira.financas.entidades;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Receitas implements Serializable {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class Receitas implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double valor;
 	private String dataRecebimento;
 	private String dataRecebimentoEsperado;
 	private String descricao;
 	private String tipoReceita;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_contas_id")
+	private Contas conta;
 	
 	public Receitas() {
 	}
@@ -91,6 +105,4 @@ public class Receitas implements Serializable {
 		Receitas other = (Receitas) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 }
