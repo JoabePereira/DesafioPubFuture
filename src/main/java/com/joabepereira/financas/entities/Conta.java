@@ -1,4 +1,4 @@
-package com.joabepereira.financas.entidades;
+package com.joabepereira.financas.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Contas implements Serializable{
+public class Conta implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -20,7 +20,16 @@ public class Contas implements Serializable{
 	private String tipoConta;
 	private String instituicaoFinanceira;
 	
-	public Contas() {
+	public Conta() {
+	}
+	
+	
+
+	public Conta(Long id, double saldo, String tipoConta, String instituicaoFinanceira) {
+		this.id = id;
+		this.saldo = saldo;
+		this.tipoConta = tipoConta;
+		this.instituicaoFinanceira = instituicaoFinanceira;
 	}
 
 	public Long getId() {
@@ -68,7 +77,7 @@ public class Contas implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Contas other = (Contas) obj;
+		Conta other = (Conta) obj;
 		return Objects.equals(id, other.id);
 	}
 }

@@ -1,4 +1,4 @@
-package com.joabepereira.financas.entidades;
+package com.joabepereira.financas.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Receitas implements Serializable {
+public class Receita implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -26,12 +26,12 @@ public class Receitas implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_contas_id")
-	private Contas conta;
+	private Conta conta;
 	
-	public Receitas() {
+	public Receita() {
 	}
 
-	public Receitas(Long id, double valor, String dataRecebimento, String dataRecebimentoEsperado, String descricao, String tipoReceita) {
+	public Receita(Long id, double valor, String dataRecebimento, String dataRecebimentoEsperado, String descricao, String tipoReceita, Conta conta) {
 		//super();
 		this.id = id;
 		this.valor = valor;
@@ -39,6 +39,7 @@ public class Receitas implements Serializable {
 		this.dataRecebimentoEsperado = dataRecebimentoEsperado;
 		this.descricao = descricao;
 		this.tipoReceita = tipoReceita;
+		this.conta = conta;
 	}
 
 	public Long getId() {
@@ -89,6 +90,14 @@ public class Receitas implements Serializable {
 		this.tipoReceita = tipoReceita;
 	}
 
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -102,7 +111,7 @@ public class Receitas implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Receitas other = (Receitas) obj;
+		Receita other = (Receita) obj;
 		return Objects.equals(id, other.id);
 	}
 }
