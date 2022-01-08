@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.joabepereira.financas.entities.enums.TipoReceita;
 
 @Entity
 public class Receita implements Serializable {
@@ -22,17 +26,20 @@ public class Receita implements Serializable {
 	private String dataRecebimento;
 	private String dataRecebimentoEsperado;
 	private String descricao;
-	private String tipoReceita;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoReceita tipoReceita;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_contas_id")
 	private Conta conta;
 	
+	/* CONSTRUTORES */
 	public Receita() {
 	}
 
-	public Receita(Long id, double valor, String dataRecebimento, String dataRecebimentoEsperado, String descricao, String tipoReceita, Conta conta) {
-		//super();
+	public Receita(Long id, double valor, String dataRecebimento, String dataRecebimentoEsperado, String descricao, TipoReceita tipoReceita, Conta conta) {
+		super();
 		this.id = id;
 		this.valor = valor;
 		this.dataRecebimento = dataRecebimento;
@@ -42,6 +49,7 @@ public class Receita implements Serializable {
 		this.conta = conta;
 	}
 
+	/* GETTERS and SETTERS*/
 	public Long getId() {
 		return id;
 	}
@@ -82,11 +90,11 @@ public class Receita implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public String getTipoReceita() {
+	public TipoReceita getTipoReceita() {
 		return tipoReceita;
 	}
 
-	public void setTipoReceita(String tipoReceita) {
+	public void setTipoReceita(TipoReceita tipoReceita) {
 		this.tipoReceita = tipoReceita;
 	}
 

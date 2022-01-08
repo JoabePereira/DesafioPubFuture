@@ -4,9 +4,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.joabepereira.financas.entities.enums.TipoConta;
 
 @Entity
 public class Conta implements Serializable{
@@ -17,13 +21,15 @@ public class Conta implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double saldo;
-	private String tipoConta;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoConta tipoConta;
 	private String instituicaoFinanceira;
 	
 	public Conta() {
 	}
 	
-	public Conta(Long id, double saldo, String tipoConta, String instituicaoFinanceira) {
+	public Conta(Long id, double saldo, TipoConta tipoConta, String instituicaoFinanceira) {
 		this.id = id;
 		this.saldo = saldo;
 		this.tipoConta = tipoConta;
@@ -46,11 +52,11 @@ public class Conta implements Serializable{
 		this.saldo = saldo;
 	}
 
-	public String getTipoConta() {
+	public TipoConta getTipoConta() {
 		return tipoConta;
 	}
 
-	public void setTipoConta(String tipoConta) {
+	public void setTipoConta(TipoConta tipoConta) {
 		this.tipoConta = tipoConta;
 	}
 

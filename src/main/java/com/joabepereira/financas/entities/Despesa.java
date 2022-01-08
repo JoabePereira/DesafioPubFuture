@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.joabepereira.financas.entities.enums.TipoDespesa;
 
 @Entity
 public class Despesa implements Serializable{
@@ -21,7 +25,9 @@ public class Despesa implements Serializable{
 	private double valor;
 	private String dataPagamento;
 	private String dataPagamentoEsperado;
-	private String tipoDespesa;
+	
+	@Enumerated(EnumType.STRING)
+	private TipoDespesa tipoDespesa;
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_conta_id")
@@ -30,7 +36,7 @@ public class Despesa implements Serializable{
 	public Despesa() {
 	}
 	
-	public Despesa(Long id, double valor, String dataPagamento, String dataPagamentoEsperado, String tipoDespesa, Conta conta) {
+	public Despesa(Long id, double valor, String dataPagamento, String dataPagamentoEsperado, TipoDespesa tipoDespesa, Conta conta) {
 		super();
 		this.id = id;
 		this.valor = valor;
@@ -72,11 +78,11 @@ public class Despesa implements Serializable{
 		this.dataPagamentoEsperado = dataPagamentoEsperado;
 	}
 
-	public String getTipoDespesa() {
+	public TipoDespesa getTipoDespesa() {
 		return tipoDespesa;
 	}
 
-	public void setTipoDespesa(String tipoDespesa) {
+	public void setTipoDespesa(TipoDespesa tipoDespesa) {
 		this.tipoDespesa = tipoDespesa;
 	}
 
