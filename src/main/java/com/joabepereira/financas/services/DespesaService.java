@@ -17,4 +17,8 @@ public class DespesaService {
 	public List<Despesa> findAll() {
 		return despesaRepository.findAll();
 	}
+	
+	public Despesa insert(Despesa despesa) {
+		return despesaRepository.save(despesa);
+	}
 }
