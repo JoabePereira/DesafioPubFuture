@@ -17,4 +17,8 @@ public class ContaService {
 	public List<Conta> findAll() {
 		return contaRepository.findAll();
 	}
+	
+	public Conta insert(Conta conta) {
+		return contaRepository.save(conta);
+	}
 }
