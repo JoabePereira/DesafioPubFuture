@@ -21,4 +21,8 @@ public class DespesaService {
 	public Despesa insert(Despesa despesa) {
 		return despesaRepository.save(despesa);
 	}
+	
+	public void delete(Long id) {
+		despesaRepository.deleteById(id);
+	}
 }

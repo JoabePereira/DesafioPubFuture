@@ -21,4 +21,8 @@ public class ReceitaService {
 	public Receita insert(Receita receita) {
 		return receitaRepository.save(receita);
 	}
+	
+	public void delete(Long id) {
+		receitaRepository.deleteById(id);
+	}
 }

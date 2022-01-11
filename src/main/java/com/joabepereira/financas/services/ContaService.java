@@ -21,4 +21,8 @@ public class ContaService {
 	public Conta insert(Conta conta) {
 		return contaRepository.save(conta);
 	}
+	
+	public void delete(Long id) {
+		contaRepository.deleteById(id);
+	}
 }
