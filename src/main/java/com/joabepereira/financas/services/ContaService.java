@@ -25,4 +25,14 @@ public class ContaService {
 	public void delete(Long id) {
 		contaRepository.deleteById(id);
 	}
+	
+	public Conta update(Long id, Conta conta) {
+		Conta entity = contaRepository.getById(id);
+		updateConta(entity, conta);
+		return contaRepository.save(entity);
+	}
+
+	private void updateConta(Conta entity, Conta conta) {
+		entity.setSaldo(conta.getSaldo());
+	}
 }

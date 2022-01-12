@@ -25,4 +25,19 @@ public class ReceitaService {
 	public void delete(Long id) {
 		receitaRepository.deleteById(id);
 	}
+	
+	public Receita update(Long id, Receita receita) {
+		Receita entity = receitaRepository.getById(id);
+		updateReceita(entity, receita);
+		return receitaRepository.save(entity);
+	}
+
+	private void updateReceita(Receita entity, Receita receita) {
+		entity.setValor(receita.getValor());
+		entity.setTipoReceita(receita.getTipoReceita());
+		entity.setDescricao(receita.getDescricao());
+		entity.setDataRecebimento(receita.getDataRecebimento());
+		entity.setDataRecebimentoEsperado(receita.getDataRecebimentoEsperado());
+		entity.setConta(receita.getConta());
+	}
 }

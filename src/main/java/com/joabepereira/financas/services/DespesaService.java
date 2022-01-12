@@ -25,4 +25,18 @@ public class DespesaService {
 	public void delete(Long id) {
 		despesaRepository.deleteById(id);
 	}
+	
+	public Despesa update(Long id, Despesa despesa) {
+		Despesa entity = despesaRepository.getById(id);
+		updateDespesa(entity, despesa);
+		return despesaRepository.save(entity);
+	}
+
+	private void updateDespesa(Despesa entity, Despesa despesa) {
+		entity.setValor(despesa.getValor());
+		entity.setTipoDespesa(despesa.getTipoDespesa());
+		entity.setDataPagamento(despesa.getDataPagamento());
+		entity.setDataPagamentoEsperado(despesa.getDataPagamentoEsperado());
+		entity.setConta(despesa.getConta());
+	}
 }
