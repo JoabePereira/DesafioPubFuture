@@ -1,7 +1,6 @@
 package com.joabepereira.financas.config;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;

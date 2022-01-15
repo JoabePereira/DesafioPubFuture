@@ -20,6 +20,8 @@ import com.joabepereira.financas.entities.Despesa;
 import com.joabepereira.financas.entities.enums.TipoDespesa;
 import com.joabepereira.financas.services.DespesaService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/despesas")
 public class DespesaResource {
@@ -28,24 +30,28 @@ public class DespesaResource {
 	private DespesaService despesaService;
 	
 	@GetMapping
+	@ApiOperation(value = "Lista todas as despesas")
 	public ResponseEntity<List<Despesa>> findAll() {
 		List<Despesa> list = despesaService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping("/data-pagamento")
+	@ApiOperation(value = "Lista depesas por período")
 	public ResponseEntity<List<Despesa>> despesaPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
 		List<Despesa> list = despesaService.despesaPorPeriodo(dataInicial, dataFinal);
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping("/tipo-despesa")
+	@ApiOperation(value = "Lista despesas por tipo")
 	public ResponseEntity<List<Despesa>> consultarPorTipoDespesa(TipoDespesa tipoDespesa) {
 		List<Despesa> list = despesaService.consultarPorTipoDespesa(tipoDespesa);
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@PostMapping
+	@ApiOperation(value = "Salva uma despesa")
 	public ResponseEntity<Despesa> insert(@RequestBody Despesa despesa) {
 		despesa = despesaService.insert(despesa);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(despesa.getId()).toUri();
@@ -53,12 +59,14 @@ public class DespesaResource {
 	}
 	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Deleta uma despesa")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		despesaService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Atualiza uma despesa")
 	public ResponseEntity<Despesa> update(@PathVariable Long id, @RequestBody Despesa despesa) {
 		despesa = despesaService.update(id, despesa);
 		return ResponseEntity.ok().body(despesa);
