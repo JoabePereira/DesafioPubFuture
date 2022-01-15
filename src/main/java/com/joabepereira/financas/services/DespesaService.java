@@ -1,11 +1,13 @@
 package com.joabepereira.financas.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joabepereira.financas.entities.Despesa;
+import com.joabepereira.financas.entities.enums.TipoDespesa;
 import com.joabepereira.financas.repositories.DespesaRepository;
 
 @Service
@@ -16,6 +18,14 @@ public class DespesaService {
 	
 	public List<Despesa> findAll() {
 		return despesaRepository.findAll();
+	}
+	
+	public List<Despesa> despesaPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
+		return despesaRepository.findByDataPagamentoBetween(dataInicial, dataFinal);
+	}
+	
+	public List<Despesa> consultarPorTipoDespesa(TipoDespesa tipoDespesa) {
+		return despesaRepository.findByTipoDespesa(tipoDespesa);
 	}
 	
 	public Despesa insert(Despesa despesa) {

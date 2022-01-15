@@ -1,11 +1,13 @@
 package com.joabepereira.financas.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.joabepereira.financas.entities.Receita;
+import com.joabepereira.financas.entities.enums.TipoReceita;
 import com.joabepereira.financas.repositories.ReceitaRepository;
 
 @Service
@@ -18,6 +20,14 @@ public class ReceitaService {
 		return receitaRepository.findAll();
 	}
 	
+	public List<Receita> consultarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
+		return receitaRepository.findByDataRecebimentoBetween(dataInicial, dataFinal);
+	}
+	
+	public List<Receita> consultarPorTipoReceita(TipoReceita tipoReceita) {
+		return receitaRepository.findByTipoReceita(tipoReceita);
+	}
+ 	
 	public Receita insert(Receita receita) {
 		return receitaRepository.save(receita);
 	}

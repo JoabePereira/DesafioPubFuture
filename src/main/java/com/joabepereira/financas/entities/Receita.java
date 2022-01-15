@@ -1,6 +1,7 @@
 package com.joabepereira.financas.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -23,8 +24,8 @@ public class Receita implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double valor;
-	private String dataRecebimento;
-	private String dataRecebimentoEsperado;
+	private LocalDate dataRecebimento;
+	private LocalDate dataRecebimentoEsperado;
 	private String descricao;
 	
 	@Enumerated(EnumType.STRING)
@@ -38,8 +39,7 @@ public class Receita implements Serializable {
 	public Receita() {
 	}
 
-	public Receita(Long id, double valor, String dataRecebimento, String dataRecebimentoEsperado, String descricao, TipoReceita tipoReceita, Conta conta) {
-		super();
+	public Receita(Long id, double valor, LocalDate dataRecebimento, LocalDate dataRecebimentoEsperado, String descricao, TipoReceita tipoReceita, Conta conta) {
 		this.id = id;
 		this.valor = valor;
 		this.dataRecebimento = dataRecebimento;
@@ -66,19 +66,19 @@ public class Receita implements Serializable {
 		this.valor = valor;
 	}
 
-	public String getDataRecebimento() {
+	public LocalDate getDataRecebimento() {
 		return dataRecebimento;
 	}
 
-	public void setDataRecebimento(String dataRecebimento) {
+	public void setDataRecebimento(LocalDate dataRecebimento) {
 		this.dataRecebimento = dataRecebimento;
 	}
 
-	public String getDataRecebimentoEsperado() {
+	public LocalDate getDataRecebimentoEsperado() {
 		return dataRecebimentoEsperado;
 	}
 
-	public void setDataRecebimentoEsperado(String dataRecebimentoEsperado) {
+	public void setDataRecebimentoEsperado(LocalDate dataRecebimentoEsperado) {
 		this.dataRecebimentoEsperado = dataRecebimentoEsperado;
 	}
 

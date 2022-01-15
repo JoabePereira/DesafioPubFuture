@@ -1,6 +1,7 @@
 package com.joabepereira.financas.resources;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.joabepereira.financas.entities.Despesa;
+import com.joabepereira.financas.entities.enums.TipoDespesa;
 import com.joabepereira.financas.services.DespesaService;
 
 @RestController
@@ -28,6 +30,18 @@ public class DespesaResource {
 	@GetMapping
 	public ResponseEntity<List<Despesa>> findAll() {
 		List<Despesa> list = despesaService.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping("/data-pagamento")
+	public ResponseEntity<List<Despesa>> despesaPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
+		List<Despesa> list = despesaService.despesaPorPeriodo(dataInicial, dataFinal);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping("/tipo-despesa")
+	public ResponseEntity<List<Despesa>> consultarPorTipoDespesa(TipoDespesa tipoDespesa) {
+		List<Despesa> list = despesaService.consultarPorTipoDespesa(tipoDespesa);
 		return ResponseEntity.ok().body(list);
 	}
 	

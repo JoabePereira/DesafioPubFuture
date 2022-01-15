@@ -1,6 +1,8 @@
 package com.joabepereira.financas.resources;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.joabepereira.financas.entities.Receita;
+import com.joabepereira.financas.entities.enums.TipoReceita;
 import com.joabepereira.financas.services.ReceitaService;
 
 @RestController
@@ -27,7 +30,19 @@ public class ReceitaResource {
 	
 	@GetMapping
 	public ResponseEntity<List<Receita>> findAll() {
-		List<Receita> list = receitaService.findAll();
+		List<Receita> list = receitaService.findAll();		
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping("/data-recebimento")
+	public ResponseEntity<List<Receita>> consultarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
+		List<Receita> list = receitaService.consultarPorPeriodo(dataInicial, dataFinal);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping("/tipo-receita")
+	public ResponseEntity<List<Receita>> consultarPorTipoReceita(TipoReceita tipoReceita) {
+		List<Receita> list = receitaService.consultarPorTipoReceita(tipoReceita);
 		return ResponseEntity.ok().body(list);
 	}
 	

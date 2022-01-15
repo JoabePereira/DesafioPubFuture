@@ -1,6 +1,7 @@
 package com.joabepereira.financas.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -23,8 +24,8 @@ public class Despesa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private double valor;
-	private String dataPagamento;
-	private String dataPagamentoEsperado;
+	private LocalDate dataPagamento;
+	private LocalDate dataPagamentoEsperado;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoDespesa tipoDespesa;
@@ -36,7 +37,7 @@ public class Despesa implements Serializable{
 	public Despesa() {
 	}
 	
-	public Despesa(Long id, double valor, String dataPagamento, String dataPagamentoEsperado, TipoDespesa tipoDespesa, Conta conta) {
+	public Despesa(Long id, double valor, LocalDate dataPagamento, LocalDate dataPagamentoEsperado, TipoDespesa tipoDespesa, Conta conta) {
 		super();
 		this.id = id;
 		this.valor = valor;
@@ -62,19 +63,19 @@ public class Despesa implements Serializable{
 		this.valor = valor;
 	}
 
-	public String getDataPagamento() {
+	public LocalDate getDataPagamento() {
 		return dataPagamento;
 	}
 
-	public void setDataPagamento(String dataPagamento) {
+	public void setDataPagamento(LocalDate dataPagamento) {
 		this.dataPagamento = dataPagamento;
 	}
 
-	public String getDataPagamentoEsperado() {
+	public LocalDate getDataPagamentoEsperado() {
 		return dataPagamentoEsperado;
 	}
 
-	public void setDataPagamentoEsperado(String dataPagamentoEsperado) {
+	public void setDataPagamentoEsperado(LocalDate dataPagamentoEsperado) {
 		this.dataPagamentoEsperado = dataPagamentoEsperado;
 	}
 
