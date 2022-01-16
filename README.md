@@ -8,8 +8,8 @@ Este projeto tem como propósito auxiliar nas finanças pessoais.
 Clone a aplicação do github através da URL: https://github.com/JoabePereira/DesafioPubFuture <br>
 Importe para o Spring Too Suite 4 e execute <br>
 O projeto esta documentado com Swagger, neste caso, é possível testar pela URL: http://localhost:8080/swagger-ui.html <br>
-Também é possível testar utilizando o Postman fornecendo os parâmetros adequados quando necessário
-Um perfil de teste foi criado (TestConfig) pra carregar alguns dados no banco ao executar a aplicação
+Também é possível testar utilizando o Postman fornecendo os parâmetros adequados quando necessário <br>
+Um perfil de teste foi criado (TestConfig) pra carregar alguns dados no banco ao executar a aplicação <br>
 Para armazenar os dados, foi utlizado o banco de dados H2 acessível pela URL: http://localhost:8080/h2-console
 
 #### Urls Acessíveis
